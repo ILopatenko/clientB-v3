@@ -7,7 +7,18 @@ import 'dotenv/config';
 class LocalHelper {
   constructor() {
     this.DB = {
-      users: [],
+      users: [
+        {
+          firstName: 'Rhudi',
+          lastName: 'Steele',
+          email: '#Rhudi-Steele@gmz.com',
+          password: 'xijcXLcSPm;,bAP',
+          agreement: true,
+          id: null,
+          lastToken: null,
+          emailConfLink: null,
+        },
+      ],
       clients: [],
       vendors: [],
       orders: [],
@@ -3789,6 +3800,26 @@ class LocalHelper {
             bodyMessage: 'User with this e-mail exists',
           },
         },
+        login: {
+          success: {
+            statusCode: 200,
+            bodyMessage: 'Auth success',
+          },
+          error: {
+            statusCode: 400,
+            bodyMessage: 'Auth failed',
+          },
+        },
+        emailConfirmarion: {
+          success: {
+            statusCode: 200,
+            bodyMessage: 'Email confirmed. Success',
+          },
+          error: {
+            statusCode: 400,
+            bodyMessage: 'Email not confirmed',
+          },
+        },
       },
     };
   }
@@ -3807,7 +3838,7 @@ class LocalHelper {
     }
     const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const numbers = '0123456789';
-    const symbols = `!@#$%^&*()-_=+[]{}/|\\;:'",<.>\`~?`;
+    const symbols = `!@#$%^&*()-_=+[]{}/|\\;:,<.>\~?`;
     const totalSet = alphabet + numbers + symbols;
     let password = '';
     for (let i = 0; i < length; i++) {
@@ -3838,18 +3869,12 @@ class LocalHelper {
     this.DB.users.push(object);
   }
 
-  clearDB() {
-    this.DB = {
-      users: [],
-      clients: [],
-      vendors: [],
-      orders: [],
-    };
-  }
-
   updateLocalUserAfterLogin(response) {
-    this.DB.users[this.DB.users.length - 1].id = response.payload.userId;
-    this.DB.users[this.DB.users.length - 1].lastToken = response.payload.token;
+    const indexInArray = this.findIndexOfGivenUserInLocalDBbyEMAIL(
+      response.payload.user.email
+    );
+    this.DB.users[indexInArray].id = response.payload.userId;
+    this.DB.users[indexInArray].lastToken = response.payload.token;
     let base = response.payload.confirmEmailLink.slice(0, 42);
     let last = response.payload.confirmEmailLink[42];
     let newLast;
@@ -3882,9 +3907,19 @@ class LocalHelper {
       base +
       last +
       '/' +
-      this.DB.users[this.DB.users.length - 1].id.slice(0, 23) +
+      this.DB.users[indexInArray].id.slice(0, 23) +
       newLast;
-    this.DB.users[this.DB.users.length - 1].emailConfLink = link;
+    this.DB.users[indexInArray].emailConfLink = link;
+  }
+
+  findIndexOfGivenUserInLocalDBbyEMAIL(email) {
+    let indexIn;
+    this.DB.users.forEach((el, ind) => {
+      if (el.email.toLowerCase() === email) {
+        indexIn = ind;
+      }
+    });
+    return indexIn;
   }
 }
 //Export the Class

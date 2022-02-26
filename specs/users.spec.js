@@ -1,6 +1,7 @@
 //IMPORT SECTION
 //  Import {expect} assertion function from Chai assertion library
 import { expect } from 'chai';
+//  Import dotenv for working with process.env variables
 import 'dotenv/config';
 //  Import helper(s)
 import UsersHelper from '../helpers/users.helper';
@@ -9,139 +10,220 @@ import LocalHelper from '../helpers/local.helper';
 const usersHelper = new UsersHelper();
 const localHelper = new LocalHelper();
 
-/* await usersHelper.login(dataForCreatingNewUser);
-localHelper.updateLocalUserAfterLogin(usersHelper.response.body);
-await usersHelper.confirmEmail(
-  localHelper.DB.users[localHelper.DB.users.length - 1]
-);
-console.log(localHelper.DB);
- */
-
-before(async () => {});
-
-describe('NEGATIVE - unhappy path - unsuccessful login with invalid credentials', () => {});
-//
-//
-//
-describe('USERS MAIN TEST SUITE', () => {
-  //
+describe('USER ENTITY MAIN TEST SUITE', () => {
+  //Create a new testUser with localHelper
   const testUser = localHelper.generateRandomDataForRegistration();
-  //
-  describe('  REGISTER', () => {
-    //
-    describe('    SMOKE TESTS', () => {
-      //
-      describe('      POSITIVE - successful registration with valid credentials', () => {
-        before(async () => {
-          await usersHelper.registerNewUser(testUser);
-          localHelper.saveUserToLocalDB(testUser);
-          process.env.USEREMAIL =
-            localHelper.DB.users[localHelper.DB.users.length - 1].email;
-          process.env.USERPASSWORD =
-            localHelper.DB.users[localHelper.DB.users.length - 1].password;
-        });
-        it(`Checking that response status code is "${localHelper.testPath.user.register.success.statusCode}"`, () => {
-          expect(usersHelper.response.statusCode).to.eq(
-            localHelper.testPath.user.register.success.statusCode
-          );
-        });
-        it('Checking that response contains body section and it is not undefined', () => {
-          expect(usersHelper.response.body).not.to.be.undefined;
-        });
-        it(`Checking that response has a message "${localHelper.testPath.user.register.success.bodyMessage}"`, () => {
-          expect(usersHelper.response.body.message).to.be.eq(
-            localHelper.testPath.user.register.success.bodyMessage
-          );
-        });
+  describe('  REGISTER FUNCTIONALITY MAIN TEST SUITE', () => {
+    describe('  Positive smoke test (happy path) - successful registration of new USER with valid credentials', () => {
+      before(async () => {
+        //console.log('testUser', testUser);
+        //Setup process.env variables
+        process.env.USEREMAIL = testUser.email;
+        process.env.USERPASSWORD = testUser.password;
+        /* console.log(
+          `New process.env.USEREMAIL = "${process.env.USEREMAIL}" and process.env.PASSWORD = "${process.env.USERPASSWORD}"`
+        ); */
+        //Register a new USER
+        await usersHelper.registerNewUser(testUser);
+        /*   console.log(
+          'Status Code of response from server after REGISTER request',
+          usersHelper.response.statusCode
+        );
+        console.log(
+          'Body of response from server after REGISTER request',
+          usersHelper.response.body
+        ); */
       });
-      //
-      describe('      NEGATIVE - unsuccessful registration with invalid credentials (credentials of another user)', () => {
-        before(async () => {
-          await usersHelper.registerNewUser(testUser);
-        });
-        it(`Checking that response status code is "${localHelper.testPath.user.register.theSameCred.statusCode}"`, () => {
-          expect(usersHelper.response.statusCode).to.eq(
-            localHelper.testPath.user.register.theSameCred.statusCode
-          );
-        });
-        it('Checking that response contains body section and it is not undefined', () => {
-          expect(usersHelper.response.body).not.to.be.undefined;
-        });
-        it(`Checking that response has a message "${localHelper.testPath.user.register.theSameCred.bodyMessage}"`, () => {
-          expect(usersHelper.response.body.message).to.be.eq(
-            localHelper.testPath.user.register.theSameCred.bodyMessage
-          );
-        });
+      after(() => {
+        //Save testUser in local Data Base
+        localHelper.saveUserToLocalDB(testUser);
+        /*  console.log(
+          'After saving a new user in local Data Base',
+          localHelper.DB
+        ); */
       });
-      //
+      it(`Checking that response status code is "${localHelper.testPath.user.register.success.statusCode}"`, () => {
+        expect(usersHelper.response.statusCode).to.be.eq(
+          localHelper.testPath.user.register.success.statusCode
+        );
+      });
+      it(`Checking that response.body has a message: "${localHelper.testPath.user.register.success.bodyMessage}"`, () => {
+        expect(usersHelper.response.body.message).to.be.eq(
+          localHelper.testPath.user.register.success.bodyMessage
+        );
+      });
     });
-    describe('    DETAILED TCs', () => {
-      //
-      describe('        POSITIVE - successful registration with valid credentials', () => {});
-      //
-      describe('        NEGATIVE - unsuccessful registration with invalid credentials', () => {});
-      //
+    describe('  Negative smoke test (unhappy path) - unsuccessful registration of new USER with invalid credentials (email of existing user)', () => {
+      before(async () => {
+        //Register a new USER with credentials from another USER
+        await usersHelper.registerNewUser(testUser);
+        /*  console.log(
+          'Status Code of response from server after REGISTER request',
+          usersHelper.response.statusCode
+        );
+        console.log(
+          'Body of response from server after REGISTER request',
+          usersHelper.response.body
+        ); */
+      });
+      it(`Checking that response status code is "${localHelper.testPath.user.register.theSameCred.statusCode}"`, () => {
+        expect(usersHelper.response.statusCode).to.be.eq(
+          localHelper.testPath.user.register.theSameCred.statusCode
+        );
+      });
+      it(`Checking that response.body has a message: "${localHelper.testPath.user.register.theSameCred.bodyMessage}"`, () => {
+        expect(usersHelper.response.body.message).to.be.eq(
+          localHelper.testPath.user.register.theSameCred.bodyMessage
+        );
+      });
     });
-    //
+    describe('  Additional test cases for all the possible detail checks', () => {});
   });
   //
   //
-  describe('  LOGIN', () => {
-    //
-    describe('    SMOKE TESTS', () => {
-      //
-      describe('      POSITIVE', () => {
-        before(async () => {
-          usersHelper.login(process.env.USEREMAIL, process.env.USERPASSWORD);
-          console.log(usersHelper.response.body);
-        });
-        it(`Checking that response status code is "${localHelper.testPath.user.register.theSameCred.statusCode}"`, () => {
-          expect(usersHelper.response.statusCode).to.eq(
-            localHelper.testPath.user.register.theSameCred.statusCode
-          );
-        });
-        it('Checking that response contains body section and it is not undefined', () => {
-          expect(usersHelper.response.body).not.to.be.undefined;
-        });
-        it(`Checking that response has a message "${localHelper.testPath.user.register.theSameCred.bodyMessage}"`, () => {
-          expect(usersHelper.response.body.message).to.be.eq(
-            localHelper.testPath.user.register.theSameCred.bodyMessage
-          );
-        });
+  describe('  LOGIN FUNCTIONALITY MAIN TEST SUITE', () => {
+    describe('  Positive smoke test (happy path) - successful login with valid credentials', () => {
+      before(async () => {
+        await usersHelper.login(
+          process.env.USEREMAIL,
+          process.env.USERPASSWORD
+        );
+        /*   console.log(
+          'Status Code of response from server after LOGIN request',
+          usersHelper.response.statusCode
+        );
+        console.log(
+          'Body of response from server after LOGIN request',
+          usersHelper.response.body
+        ); */
       });
-      //
-      describe('      NEGATIVE', () => {});
-      //
+      after(() => {
+        //Add additional information (UserId, token and confirmation link in local DB)
+        localHelper.updateLocalUserAfterLogin(usersHelper.response.body);
+        //console.log(localHelper.DB);
+      });
+      it(`Checking that response status code is "${localHelper.testPath.user.login.success.statusCode}"`, () => {
+        expect(usersHelper.response.statusCode).to.be.eq(
+          localHelper.testPath.user.login.success.statusCode
+        );
+      });
+      it(`Checking that response.body has a message: "${localHelper.testPath.user.login.success.bodyMessage}"`, () => {
+        expect(usersHelper.response.body.message).to.be.eq(
+          localHelper.testPath.user.login.success.bodyMessage
+        );
+      });
+      it(`Checking that user has role "new"`, () => {
+        expect(usersHelper.response.body.payload.user.roles[0]).to.be.eq('new');
+      });
     });
-    describe('    DETAILED TCs', () => {
-      //
-      describe('       POSITIVE - successful registration with valid credentials', () => {});
-      //
-      describe('       NEGATIVE - unsuccessful registration with invalid credentials', () => {});
-      //
+
+    describe('  Negative smoke test (unhappy path) - unsuccessful login with invalid credentials (wrong email)', () => {
+      before(async () => {
+        await usersHelper.login('qqq@dsfsdf.rrr', process.env.USERPASSWORD);
+        /*   console.log(
+          'Status Code of response from server after LOGIN request',
+          usersHelper.response.statusCode
+        );
+        console.log(
+          'Body of response from server after LOGIN request',
+          usersHelper.response.body
+        ); */
+      });
+      it(`Checking that response status code is "${localHelper.testPath.user.login.error.statusCode}"`, () => {
+        expect(usersHelper.response.statusCode).to.be.eq(
+          localHelper.testPath.user.login.error.statusCode
+        );
+      });
+      it(`Checking that response.body has a message: "${localHelper.testPath.user.login.error.bodyMessage}"`, () => {
+        expect(usersHelper.response.body.message).to.be.eq(
+          localHelper.testPath.user.login.error.bodyMessage
+        );
+      });
     });
-    //
+    describe('  Additional test cases for all the possible detail checks', () => {});
   });
-  //
-  //
-  describe('  EMAIL CONFIRMATION', () => {
-    //
-    describe('    SMOKE TESTS', () => {
-      //
-      describe('      POSITIVE', () => {});
-      //
-      describe('      NEGATIVE', () => {});
-      //
+  describe('  EMAIL CONFIRMARION FUNCTIONALITY MAIN TEST SUITE', () => {
+    describe('  POSITIVE Smoke test', () => {
+      before(async () => {
+        await usersHelper.confirmEmail(
+          localHelper.DB.users[localHelper.DB.users.length - 1]
+        );
+        /*  console.log(
+          'Status Code of response from server after LOGIN request',
+          usersHelper.response.statusCode
+        );
+        console.log(
+          'Body of response from server after LOGIN request',
+          usersHelper.response.body
+        ); */
+      });
+      it(`Checking that response status code is "${localHelper.testPath.user.emailConfirmarion.success.statusCode}"`, () => {
+        expect(usersHelper.response.statusCode).to.be.eq(
+          localHelper.testPath.user.emailConfirmarion.success.statusCode
+        );
+      });
+      it(`Checking that response.body has a message: "${localHelper.testPath.user.emailConfirmarion.success.bodyMessage}"`, () => {
+        expect(usersHelper.response.body.message).to.be.eq(
+          localHelper.testPath.user.emailConfirmarion.success.bodyMessage
+        );
+      });
     });
-    describe('    DETAILED TCs', () => {
-      //
-      describe('        POSITIVE - successful registration with valid credentials', () => {});
-      //
-      describe('       NEGATIVE - unsuccessful registration with invalid credentials', () => {});
-      //
+    describe('        Checking that after email confirmation user has role "verified"', () => {
+      before(async () => {
+        await usersHelper.login(
+          process.env.USEREMAIL,
+          process.env.USERPASSWORD
+        );
+        /*  console.log(
+          'Status Code of response from server after LOGIN request',
+          usersHelper.response.statusCode
+        );
+        console.log(
+          'Body of response from server after LOGIN request',
+          usersHelper.response.body
+        ); */
+      });
+      it(`Checking that response status code is "${localHelper.testPath.user.login.success.statusCode}"`, () => {
+        expect(usersHelper.response.statusCode).to.be.eq(
+          localHelper.testPath.user.login.success.statusCode
+        );
+      });
+      it(`Checking that response.body has a message: "${localHelper.testPath.user.login.success.bodyMessage}"`, () => {
+        expect(usersHelper.response.body.message).to.be.eq(
+          localHelper.testPath.user.login.success.bodyMessage
+        );
+      });
+      it(`Checking that user has role "verified"`, () => {
+        expect(usersHelper.response.body.payload.user.roles[0]).to.be.eq(
+          'verified'
+        );
+      });
     });
-    //
+    describe('  NEGATIVE test case', () => {
+      before(async () => {
+        await usersHelper.confirmEmail({
+          emailConfLink:
+            'http://clientbase-server.herokuapp.com/v2/user/verify/email/621997831b565d0016e4c7b5/621997831b565d066664c7b6',
+        });
+        /* console.log(
+          'Status Code of response from server after LOGIN request',
+          usersHelper.response.statusCode
+        );
+        console.log(
+          'Body of response from server after LOGIN request',
+          usersHelper.response.body
+        ); */
+      });
+      it(`Checking that response status code is "${localHelper.testPath.user.emailConfirmarion.error.statusCode}"`, () => {
+        expect(usersHelper.response.statusCode).to.be.eq(
+          localHelper.testPath.user.emailConfirmarion.error.statusCode
+        );
+      });
+      it(`Checking that response.body has a message: "${localHelper.testPath.user.emailConfirmarion.error.bodyMessage}"`, () => {
+        expect(usersHelper.response.body.message).to.be.eq(
+          localHelper.testPath.user.emailConfirmarion.error.bodyMessage
+        );
+      });
+    });
   });
-  //
-  //
 });

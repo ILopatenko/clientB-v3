@@ -9,13 +9,13 @@ class UsersHelper {
     this.response = null;
   }
   //Register a NEW USER
-  async registerNewUser(object) {
+  async registerNewUser(userObject) {
     //Create, setup, send request to server, wait for the response (async/await) and save the respponse from server to response property (variable)
     await supertest(process.env.BASE_URL)
       //Setup a request method - POST and an endpoint - /auth
       .post('/user')
       //Setup payload - object with 2 keys - login and password (and their values)
-      .send(object)
+      .send(userObject)
       //Save a response from server to esponse property (variable)
       .then((res) => {
         this.response = res;

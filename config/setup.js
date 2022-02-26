@@ -12,5 +12,5 @@ before(async () => {});
 //  After - will be runned after all the tests - MAIN POSTCONDITIONS
 after(async () => {
   //Clear all the test changes
-  console.log(`after`);
+  //console.log(`after`);
 });
