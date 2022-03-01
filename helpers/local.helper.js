@@ -3821,6 +3821,14 @@ class LocalHelper {
           },
         },
       },
+      client: {
+        create: {
+          success: {
+            statusCode: 200,
+            bodyMessage: 'Client created',
+          },
+        },
+      },
     };
   }
 
@@ -3920,6 +3928,35 @@ class LocalHelper {
       }
     });
     return indexIn;
+  }
+
+  //CLIENT
+  generateRandomDataForNewClient() {
+    const firstName = this.getRandomItemFromArray(this.testData.firstnames);
+    const lastName = this.getRandomItemFromArray(this.testData.lastNames);
+    const domain = this.getRandomItemFromArray(this.testData.emailDomains);
+    const fullName = `${firstName} ${lastName}`;
+    const email = `#client_${firstName}-${lastName}@${domain}`;
+    const phone = `${Math.floor(Math.random() * 10)
+      .toString()
+      .repeat(3)}-${Math.floor(Math.random() * 10)
+      .toString()
+      .repeat(3)}-${Math.floor(Math.random() * 10)
+      .toString()
+      .repeat(2)}-${Math.floor(Math.random() * 10)
+      .toString()
+      .repeat(2)}`;
+    return {
+      name: fullName,
+      email,
+      phone,
+      id: null,
+      notes: `This is a summary about client ${fullName}: email is "${email}", phone is "${phone}"`,
+    };
+  }
+  //Add a new client to local DB
+  addNewClientToLocalDB(clientObject) {
+    this.DB.clients.push(clientObject);
   }
 }
 //Export the Class

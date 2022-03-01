@@ -13,7 +13,7 @@ const localHelper = new LocalHelper();
 describe('USER ENTITY MAIN TEST SUITE', () => {
   //Create a new testUser with localHelper
   const testUser = localHelper.generateRandomDataForRegistration();
-  describe('  REGISTER FUNCTIONALITY MAIN TEST SUITE', () => {
+  describe.skip('  REGISTER FUNCTIONALITY MAIN TEST SUITE', () => {
     describe('  Positive smoke test (happy path) - successful registration of new USER with valid credentials', () => {
       before(async () => {
         //console.log('testUser', testUser);
@@ -112,7 +112,7 @@ describe('USER ENTITY MAIN TEST SUITE', () => {
           localHelper.testPath.user.login.success.bodyMessage
         );
       });
-      it(`Checking that user has role "new"`, () => {
+      it.skip(`Checking that user has role "new"`, () => {
         expect(usersHelper.response.body.payload.user.roles[0]).to.be.eq('new');
       });
     });
