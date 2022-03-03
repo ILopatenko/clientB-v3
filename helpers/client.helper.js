@@ -24,27 +24,31 @@ class ClientHelper {
       });
   }
   //
-  //Login
-  async login(email, password) {
+  //GET CLIENT PROFILE BY ID
+  async getByID(id) {
     //Create, setup, send request to server, wait for the response (async/await) and save the respponse from server to response property (variable)
     await supertest(process.env.BASE_URL)
       //Setup a request method - POST and an endpoint - /auth
-      .post('/user/login')
-      //Setup payload - object with 2 keys - login and password (and their values)
-      .send({ email: email, password: password })
+      .get(`/client/${id}`)
+      //Add token to your request (for each protected route)
+      .set('Authorization', `${process.env.TOKEN}`)
       //Save a response from server to esponse property (variable)
       .then((res) => {
         this.response = res;
       });
   }
 
-  //Login
-  async confirmEmail(userObject) {
+  //EDIT CLIENT PROFILE BY ID
+  async editByID(id, objectWithNewValues) {
     //Create, setup, send request to server, wait for the response (async/await) and save the respponse from server to response property (variable)
-    await supertest('')
+    await supertest(process.env.BASE_URL)
       //Setup a request method - POST and an endpoint - /auth
-      .get(userObject.emailConfLink)
+      .patch(`/client/${id}`)
+      //Add token to your request (for each protected route)
+      .set('Authorization', `${process.env.TOKEN}`)
       //Save a response from server to esponse property (variable)
+      //Setup payload - object with 2 keys - login and password (and their values)
+      .send(objectWithNewValues)
       .then((res) => {
         this.response = res;
       });

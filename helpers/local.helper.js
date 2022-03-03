@@ -3828,6 +3828,12 @@ class LocalHelper {
             bodyMessage: 'Client created',
           },
         },
+        getByID: {
+          success: {
+            statusCode: 200,
+            bodyMessage: 'Get Client by id ok',
+          },
+        },
       },
     };
   }
@@ -3937,15 +3943,17 @@ class LocalHelper {
     const domain = this.getRandomItemFromArray(this.testData.emailDomains);
     const fullName = `${firstName} ${lastName}`;
     const email = `#client_${firstName}-${lastName}@${domain}`;
-    const phone = `${Math.floor(Math.random() * 10)
-      .toString()
-      .repeat(3)}-${Math.floor(Math.random() * 10)
-      .toString()
-      .repeat(3)}-${Math.floor(Math.random() * 10)
-      .toString()
-      .repeat(2)}-${Math.floor(Math.random() * 10)
-      .toString()
-      .repeat(2)}`;
+    const phone = `${this.getRandomIntFromZeroUpToX(
+      9
+    )}${this.getRandomIntFromZeroUpToX(9)}${this.getRandomIntFromZeroUpToX(
+      9
+    )}-${this.getRandomIntFromZeroUpToX(9)}${this.getRandomIntFromZeroUpToX(
+      9
+    )}${this.getRandomIntFromZeroUpToX(9)}-${this.getRandomIntFromZeroUpToX(
+      9
+    )}${this.getRandomIntFromZeroUpToX(9)}-${this.getRandomIntFromZeroUpToX(
+      9
+    )}${this.getRandomIntFromZeroUpToX(9)}`;
     return {
       name: fullName,
       email,
