@@ -3834,6 +3834,18 @@ class LocalHelper {
             bodyMessage: 'Get Client by id ok',
           },
         },
+        delete: {
+          success: {
+            statusCode: 200,
+            bodyMessage: 'Client deleted',
+          },
+        },
+        getAll: {
+          success: {
+            statusCode: 200,
+            bodyMessage: 'ClientSearch ok',
+          },
+        },
       },
     };
   }

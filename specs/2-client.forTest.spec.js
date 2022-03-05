@@ -17,13 +17,8 @@ describe('CLIENT ENTITY MAIN TEST SUITE', () => {
   describe('  CREATE FUNCTIONALITY MAIN TEST SUITE', () => {
     describe('  Positive smoke test (happy path) - successful creating a new CLIENT with valid credentials', () => {
       before(async () => {
-        await usersHelper.login(
-          process.env.USEREMAIL,
-          process.env.USERPASSWORD
-        );
-        process.env.TOKEN = usersHelper.response.body.payload.token;
         await clientHelper.createNew(testClient);
-        /*  console.log(
+        /*   console.log(
           'Status Code of response from server after CREATE a new CLIENT request',
           clientHelper.response.statusCode
         );
@@ -35,7 +30,7 @@ describe('CLIENT ENTITY MAIN TEST SUITE', () => {
       after(async () => {
         testClient.id = clientHelper.response.body.payload;
         localHelper.addNewClientToLocalDB(testClient);
-        console.log(localHelper.DB);
+        //console.log(localHelper.DB);
       });
       it(`Checking that response status code is "${localHelper.testPath.client.create.success.statusCode}"`, () => {
         expect(clientHelper.response.statusCode).to.be.eq(
@@ -52,15 +47,15 @@ describe('CLIENT ENTITY MAIN TEST SUITE', () => {
   });
   describe('  GET CLIENT BY ID', () => {
     before(async () => {
-      await clientHelper.getByID(localHelper.DB.clients.at(-1).id);
-      console.log(
+      await clientHelper.getByID(testClient.id);
+      /*  console.log(
         'Status Code of response from server after GET BY ID request',
         clientHelper.response.statusCode
       );
       console.log(
         'Body of response from server after GET BY ID request',
         clientHelper.response.body
-      );
+      ); */
     });
     it(`Checking that response status code is "${localHelper.testPath.client.getByID.success.statusCode}"`, () => {
       expect(clientHelper.response.statusCode).to.be.eq(
@@ -105,14 +100,12 @@ describe('CLIENT ENTITY MAIN TEST SUITE', () => {
   });
   describe('  EDIT CLIENT BY ID', () => {
     before(async () => {
-      await usersHelper.login(process.env.USEREMAIL, process.env.USERPASSWORD);
-      process.env.TOKEN = usersHelper.response.body.payload.token;
       await clientHelper.editByID(
-        localHelper.DB.clients.at(-1).id,
+        testClient.id,
         localHelper.generateRandomDataForNewClient()
       );
-      await clientHelper.getByID(localHelper.DB.clients.at(-1).id);
-      console.log(
+      await clientHelper.getByID(testClient.id);
+      /*  console.log(
         'Status Code of response from server after EDIT CLIENT BY ID request',
         clientHelper.response.statusCode
       );
@@ -120,7 +113,7 @@ describe('CLIENT ENTITY MAIN TEST SUITE', () => {
         'Body of response from server after EDIT CLIENT BY ID request',
         clientHelper.response.body
       );
-      console.log(localHelper.DB);
+      console.log(localHelper.DB); */
     });
     it(`Checking that response status code is "${localHelper.testPath.client.getByID.success.statusCode}"`, () => {
       expect(clientHelper.response.statusCode).to.be.eq(
@@ -130,6 +123,69 @@ describe('CLIENT ENTITY MAIN TEST SUITE', () => {
     it(`Checking that response.body has a message: "${localHelper.testPath.client.getByID.success.bodyMessage}"`, () => {
       expect(clientHelper.response.body.message).to.be.eq(
         localHelper.testPath.client.getByID.success.bodyMessage
+      );
+    });
+  }); //
+  describe('  DELETE CLIENT BY ID', () => {
+    before(async () => {
+      await clientHelper.deleteByID(testClient.id);
+
+      /*    console.log(
+        'Status Code of response from server after DELETE CLIENT BY ID request',
+        clientHelper.response.statusCode
+      );
+      console.log(
+        'Body of response from server after DELETE CLIENT BY ID request',
+        clientHelper.response.body
+      );
+      console.log(localHelper.DB); */
+    });
+    it(`Checking that response status code is "${localHelper.testPath.client.delete.success.statusCode}"`, () => {
+      expect(clientHelper.response.statusCode).to.be.eq(
+        localHelper.testPath.client.delete.success.statusCode
+      );
+    });
+    it(`Checking that response.body has a message: "${localHelper.testPath.client.delete.success.bodyMessage}"`, () => {
+      expect(clientHelper.response.body.message).to.be.eq(
+        localHelper.testPath.client.delete.success.bodyMessage
+      );
+    });
+  }); //
+
+  //
+  //
+  describe.skip('  GET ALL CLIENTS and DELETE last 10', () => {
+    before(async () => {
+      await clientHelper.getAll(10, 1);
+      console.log(
+        'Status Code of response from server after DELETE CLIENT BY ID request',
+        clientHelper.response.statusCode
+      );
+      console.log(
+        'Body of response from server after DELETE CLIENT BY ID request',
+        clientHelper.response.body.payload
+      );
+
+      const parseClientID = [];
+
+      clientHelper.response.body.payload.items.forEach((el) => {
+        console.log(`current client is`, el);
+        clientHelper.deleteByID(el._id);
+        console.log(
+          `response after deleting`,
+          clientHelper.response.statusCode,
+          clientHelper.response.body.message
+        );
+      });
+    });
+    it(`Checking that response status code is "${localHelper.testPath.client.getAll.success.statusCode}"`, () => {
+      expect(clientHelper.response.statusCode).to.be.eq(
+        localHelper.testPath.client.getAll.success.statusCode
+      );
+    });
+    it(`Checking that response.body has a message: "${localHelper.testPath.client.getAll.success.bodyMessage}"`, () => {
+      expect(clientHelper.response.body.message).to.be.eq(
+        localHelper.testPath.client.getAll.success.bodyMessage
       );
     });
   }); //

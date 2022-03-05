@@ -8,9 +8,14 @@ import LocalHelper from '../helpers/local.helper';
 const usersHelper = new UsersHelper();
 const localHelper = new LocalHelper();
 //  Before - will be runned before all the tests - MAIN PRECONDITIONS
-before(async () => {});
+before(async () => {
+  await usersHelper.login(process.env.USEREMAIL, process.env.USERPASSWORD);
+  process.env.TOKEN = usersHelper.response.body.payload.token;
+  //console.log(usersHelper.response.body);
+});
 //  After - will be runned after all the tests - MAIN POSTCONDITIONS
 after(async () => {
+  //console.log(localHelper.DB);
   //Clear all the test changes
   //console.log(`after`);
 });

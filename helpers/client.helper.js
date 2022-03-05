@@ -53,6 +53,36 @@ class ClientHelper {
         this.response = res;
       });
   }
+
+  //DELETE CLIENT PROFILE BY ID
+  async deleteByID(id) {
+    //Create, setup, send request to server, wait for the response (async/await) and save the respponse from server to response property (variable)
+    await supertest(process.env.BASE_URL)
+      //Setup a request method - POST and an endpoint - /auth
+      .delete(`/client/${id}`)
+      //Add token to your request (for each protected route)
+      .set('Authorization', `${process.env.TOKEN}`)
+      //Save a response from server to response property (variable)
+      .then((res) => {
+        this.response = res;
+      });
+  }
+
+  //GET ALL (first 100) CLIENTS PROFILE
+  async getAll(limit, page) {
+    //Create, setup, send request to server, wait for the response (async/await) and save the respponse from server to response property (variable)
+    await supertest(process.env.BASE_URL)
+      //Setup a request method - POST and an endpoint - /auth
+      .post(`/client/search`)
+      //Add token to your request (for each protected route)
+      .set('Authorization', `${process.env.TOKEN}`)
+      //Setup payload - object with 2 keys - login and password (and their values)
+      .send({ limit, page })
+      //Save a response from server to response property (variable)
+      .then((res) => {
+        this.response = res;
+      });
+  }
 }
 //Export the Class
 export default ClientHelper;

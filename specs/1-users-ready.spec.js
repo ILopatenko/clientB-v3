@@ -81,7 +81,7 @@ describe('USER ENTITY MAIN TEST SUITE', () => {
   });
   //
   //
-  describe('  LOGIN FUNCTIONALITY MAIN TEST SUITE', () => {
+  describe.skip('  LOGIN FUNCTIONALITY MAIN TEST SUITE', () => {
     describe('  Positive smoke test (happy path) - successful login with valid credentials', () => {
       before(async () => {
         await usersHelper.login(
@@ -142,7 +142,7 @@ describe('USER ENTITY MAIN TEST SUITE', () => {
     });
     describe('  Additional test cases for all the possible detail checks', () => {});
   });
-  describe('  EMAIL CONFIRMARION FUNCTIONALITY MAIN TEST SUITE', () => {
+  describe.skip('  EMAIL CONFIRMARION FUNCTIONALITY MAIN TEST SUITE', () => {
     describe('  POSITIVE Smoke test', () => {
       before(async () => {
         await usersHelper.confirmEmail(
