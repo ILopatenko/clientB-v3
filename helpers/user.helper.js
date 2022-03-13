@@ -3,8 +3,8 @@
 import supertest from 'supertest';
 //  Import dotenv package - to work with environmental project's variables
 import 'dotenv/config';
-//Create a new Class for usersHelper - will store response from a server in response property (variable) all the methods (functions) that related to auth
-class UsersHelper {
+//Create a new Class for userHelper - will store response from a server in response property (variable) all the methods (functions) that related to auth
+class UserHelper {
   constructor() {
     this.response = null;
   }
@@ -37,11 +37,11 @@ class UsersHelper {
   }
 
   //Login
-  async confirmEmail(userObject) {
+  async confirmEmail(link) {
     //Create, setup, send request to server, wait for the response (async/await) and save the respponse from server to response property (variable)
-    await supertest('')
+    await supertest(link)
       //Setup a request method - POST and an endpoint - /auth
-      .get(userObject.emailConfLink)
+      .get('')
       //Save a response from server to esponse property (variable)
       .then((res) => {
         this.response = res;
@@ -49,4 +49,4 @@ class UsersHelper {
   }
 }
 //Export the Class
-export default UsersHelper;
+export default UserHelper;

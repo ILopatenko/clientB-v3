@@ -6,11 +6,11 @@ import 'dotenv/config';
 //  Import helper(s)
 import ClientHelper from '../helpers/client.helper';
 import LocalHelper from '../helpers/local.helper';
-import UsersHelper from '../helpers/users.helper';
+import UserHelper from '../helpers/user.helper';
 //  Creating a new instance of helper(s)
 const clientHelper = new ClientHelper();
 const localHelper = new LocalHelper();
-const usersHelper = new UsersHelper();
+const userHelper = new UserHelper();
 
 describe('CLIENT ENTITY MAIN TEST SUITE', () => {
   const testClient = localHelper.generateRandomDataForNewClient();
