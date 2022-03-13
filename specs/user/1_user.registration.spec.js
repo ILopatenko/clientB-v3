@@ -59,13 +59,3 @@ describe.skip('USER REGISTRATION main Test Suite', () => {
   });
   //
 });
-
-//
-/* 
-describe('Test Suite for all the detail Test Cases', () => {});
-before(async () => {});
-after(async () => {});
-it(`TEXT VALUE FOR TEST CASE`, () => {
-  expect(true).to.be.eq(true);
-});
- */

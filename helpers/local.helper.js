@@ -496,11 +496,26 @@ class LocalHelper {
             statusCode: 200,
             bodyMessage: 'Client created',
           },
+          withoutName: {
+            statusCode: 400,
+            bodyMessage: 'Client create error',
+            testObject: {
+              email: '#client_Ava-Roberts@verizon.net',
+              phone: '027-104-84-84',
+              id: null,
+              notes:
+                'This is a summary about client Ava Roberts: email is "#client_Ava-Roberts@verizon.net", phone is "027-104-84-84"',
+            },
+          },
         },
         getByID: {
           success: {
             statusCode: 200,
             bodyMessage: 'Get Client by id ok',
+          },
+          error: {
+            statusCode: 400,
+            bodyMessage: 'Client get error',
           },
         },
         delete: {
@@ -508,11 +523,33 @@ class LocalHelper {
             statusCode: 200,
             bodyMessage: 'Client deleted',
           },
+          error: {
+            statusCode: 400,
+            bodyMessage: 'Client delete error',
+          },
         },
+
         getAll: {
           success: {
             statusCode: 200,
             bodyMessage: 'ClientSearch ok',
+          },
+        },
+        editByID: {
+          success: {
+            dataObject: {
+              name: 'CHANGED NAME!',
+              email: 'NEW@EMAIL.COM',
+              phone: '333-444-22-99',
+              id: null,
+              notes: 'NEW HOTE ABOUT CLIENT',
+            },
+            statusCode: 200,
+            bodyMessage: 'Client updated',
+          },
+          error: {
+            statusCode: 400,
+            bodyMessage: 'Client update error',
           },
         },
       },
@@ -560,53 +597,6 @@ class LocalHelper {
       lastToken: null,
       emailConfLink: null,
     };
-  }
-
-  saveUserToLocalDB(object) {
-    this.DB.users.push(object);
-  }
-
-  updateLocalUserAfterLogin(response) {
-    const indexInArray = this.findIndexOfGivenUserInLocalDBbyEMAIL(
-      response.payload.user.email
-    );
-    this.DB.users[indexInArray].id = response.payload.userId;
-    this.DB.users[indexInArray].lastToken = response.payload.token;
-    let base = response.payload.confirmEmailLink.slice(0, 42);
-    let last = response.payload.confirmEmailLink[42];
-    let newLast;
-    if (typeof +last === 'number' && +last <= 8) {
-      newLast = +last + 1;
-    }
-    if (last === '9') {
-      newLast = 'a';
-    }
-    if (last === 'a') {
-      newLast = 'b';
-    }
-    if (last === 'b') {
-      newLast = 'c';
-    }
-    if (last === 'c') {
-      newLast = 'd';
-    }
-    if (last === 'd') {
-      newLast = 'e';
-    }
-    if (last === 'e') {
-      newLast = 'f';
-    }
-    if (last === 'f') {
-      newLast = '0';
-    }
-    let link =
-      process.env.BASE_URL +
-      base +
-      last +
-      '/' +
-      this.DB.users[indexInArray].id.slice(0, 23) +
-      newLast;
-    this.DB.users[indexInArray].emailConfLink = link;
   }
 
   findIndexOfGivenUserInLocalDBbyEMAIL(email) {

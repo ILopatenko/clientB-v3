@@ -2,7 +2,7 @@ module.exports = {
   //Import babel to the project
   require: '@babel/register',
   //Setup all the specs that will be runned
-  spec: 'specs/user/*.spec.js',
+  spec: 'specs/**/*.spec.js',
   //Setup configuretion file - MAIN HOOKS
   file: 'config/setup.js',
   //Setup all the specs that will be ignored

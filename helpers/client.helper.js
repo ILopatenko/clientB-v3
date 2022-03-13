@@ -76,7 +76,7 @@ class ClientHelper {
       .post(`/client/search`)
       //Add token to your request (for each protected route)
       .set('Authorization', `${process.env.TOKEN}`)
-      //Setup payload - object with 2 keys - login and password (and their values)
+      //Setup payload - object with 2 keys
       .send({ limit, page })
       //Save a response from server to response property (variable)
       .then((res) => {
