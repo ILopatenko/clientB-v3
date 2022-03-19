@@ -552,6 +552,12 @@ class LocalHelper {
             bodyMessage: 'Client update error',
           },
         },
+        findByID: {
+          success: {
+            statusCode: 200,
+            bodyMessage: 'ClientSearch ok',
+          },
+        },
       },
     };
   }
@@ -608,15 +614,20 @@ class LocalHelper {
     });
     return indexIn;
   }
-
-  //CLIENT
-  generateRandomDataForNewClient() {
-    const firstName = this.getRandomItemFromArray(this.testData.firstnames);
-    const lastName = this.getRandomItemFromArray(this.testData.lastNames);
-    const domain = this.getRandomItemFromArray(this.testData.emailDomains);
-    const fullName = `${firstName} ${lastName}`;
-    const email = `#client_${firstName}-${lastName}@${domain}`;
-    const phone = `${this.getRandomIntFromZeroUpToX(
+  generateFirstName() {
+    return this.getRandomItemFromArray(this.testData.firstnames);
+  }
+  generateLastName() {
+    return this.getRandomItemFromArray(this.testData.lastNames);
+  }
+  generateEmailBasedOnNames(firstName, lastName) {
+    return `#client_${firstName}-${this.generateRandomCombination(
+      5,
+      this.testData.emailSymbols
+    )}-${lastName}@${this.getRandomItemFromArray(this.testData.emailDomains)}`;
+  }
+  generatePhoneNumber() {
+    return `${this.getRandomIntFromZeroUpToX(
       9
     )}${this.getRandomIntFromZeroUpToX(9)}${this.getRandomIntFromZeroUpToX(
       9
@@ -627,12 +638,21 @@ class LocalHelper {
     )}${this.getRandomIntFromZeroUpToX(9)}-${this.getRandomIntFromZeroUpToX(
       9
     )}${this.getRandomIntFromZeroUpToX(9)}`;
+  }
+  //CLIENT
+  generateRandomDataForNewClient() {
+    const firstName = this.generateFirstName();
+    const lastName = this.generateLastName();
+    const name = `${firstName} ${lastName}`;
+    const email = this.generateEmailBasedOnNames(firstName, lastName);
+    const phone = this.generatePhoneNumber();
+    const notes = `This is a summary about client ${name}: email is "${email}", phone is "${phone}"`;
     return {
-      name: fullName,
+      name,
       email,
       phone,
       id: null,
-      notes: `This is a summary about client ${fullName}: email is "${email}", phone is "${phone}"`,
+      notes,
     };
   }
   //Add a new client to local DB

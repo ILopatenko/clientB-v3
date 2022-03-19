@@ -1,0 +1,387 @@
+{
+  "stats": {
+    "suites": 5,
+    "tests": 7,
+    "passes": 7,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-03-16T21:09:10.215Z",
+    "end": "2022-03-16T21:09:11.207Z",
+    "duration": 992,
+    "testsRegistered": 7,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "66d71700-df35-427e-b994-0e513b99d631",
+      "title": "",
+      "fullFile": "/media/970-rest/_projects_/clientB-v3/specs/client/1_client.create.spec.js",
+      "file": "/specs/client/1_client.create.spec.js",
+      "beforeHooks": [
+        {
+          "title": "\"before all\" hook in \"{root}\"",
+          "fullTitle": "\"before all\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 406,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "var self = this,\n    args = arguments;\nreturn new Promise(function (resolve, reject) {\n  var gen = fn.apply(self, args);\n  function _next(value) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value);\n  }\n  function _throw(err) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err);\n  }\n  _next(undefined);\n});",
+          "err": {},
+          "uuid": "56c2484f-b916-4c81-9ac5-b4d7d1c857e1",
+          "parentUUID": "66d71700-df35-427e-b994-0e513b99d631",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "afterHooks": [
+        {
+          "title": "\"after all\" hook in \"{root}\"",
+          "fullTitle": "\"after all\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 1,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "var self = this,\n    args = arguments;\nreturn new Promise(function (resolve, reject) {\n  var gen = fn.apply(self, args);\n  function _next(value) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value);\n  }\n  function _throw(err) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err);\n  }\n  _next(undefined);\n});",
+          "err": {},
+          "uuid": "27847adb-b3d3-4e85-a855-3c79e4823c85",
+          "parentUUID": "66d71700-df35-427e-b994-0e513b99d631",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "38d49e92-2c71-4857-8709-44ff805328f8",
+          "title": "CREATE a new CLIENT",
+          "fullFile": "/media/970-rest/_projects_/clientB-v3/specs/client/1_client.create.spec.js",
+          "file": "/specs/client/1_client.create.spec.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"CREATE a new CLIENT\"",
+              "fullTitle": "CREATE a new CLIENT \"before all\" hook in \"CREATE a new CLIENT\"",
+              "timedOut": false,
+              "duration": 322,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var self = this,\n    args = arguments;\nreturn new Promise(function (resolve, reject) {\n  var gen = fn.apply(self, args);\n  function _next(value) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value);\n  }\n  function _throw(err) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err);\n  }\n  _next(undefined);\n});",
+              "err": {},
+              "uuid": "f5a4cbee-cfa4-479f-aa4d-db7c5ba9cf80",
+              "parentUUID": "38d49e92-2c71-4857-8709-44ff805328f8",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"CREATE a new CLIENT\"",
+              "fullTitle": "CREATE a new CLIENT \"after all\" hook in \"CREATE a new CLIENT\"",
+              "timedOut": false,
+              "duration": 2,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var self = this,\n    args = arguments;\nreturn new Promise(function (resolve, reject) {\n  var gen = fn.apply(self, args);\n  function _next(value) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value);\n  }\n  function _throw(err) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err);\n  }\n  _next(undefined);\n});",
+              "err": {},
+              "uuid": "4a131e9b-aa06-4df3-a254-6db8f6349bad",
+              "parentUUID": "38d49e92-2c71-4857-8709-44ff805328f8",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "95afe52a-09ce-4983-8208-549c6582c3d3",
+              "title": "SMOKE TESTS",
+              "fullFile": "/media/970-rest/_projects_/clientB-v3/specs/client/1_client.create.spec.js",
+              "file": "/specs/client/1_client.create.spec.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [],
+              "suites": [
+                {
+                  "uuid": "5504f273-676d-4e34-a42f-ae6f123e46cd",
+                  "title": "POSITIVE - happy path with valid credentials",
+                  "fullFile": "/media/970-rest/_projects_/clientB-v3/specs/client/1_client.create.spec.js",
+                  "file": "/specs/client/1_client.create.spec.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "Checking that response.statusCode is \"200\"",
+                      "fullTitle": "CREATE a new CLIENT SMOKE TESTS POSITIVE - happy path with valid credentials Checking that response.statusCode is \"200\"",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "(0, _chai.expect)(clientHelper.response.statusCode).to.be.eq(localHelper.testPath.client.create.success.statusCode);",
+                      "err": {},
+                      "uuid": "e5367cc9-062b-4451-8e9d-4994685cd1c2",
+                      "parentUUID": "5504f273-676d-4e34-a42f-ae6f123e46cd",
+                      "isHook": false,
+                      "skipped": false
+                    },
+                    {
+                      "title": "Checking that response.body.message is \"Client created\"",
+                      "fullTitle": "CREATE a new CLIENT SMOKE TESTS POSITIVE - happy path with valid credentials Checking that response.body.message is \"Client created\"",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "(0, _chai.expect)(clientHelper.response.body.message).to.be.eq(localHelper.testPath.client.create.success.bodyMessage);",
+                      "err": {},
+                      "uuid": "be440a71-4daf-4ddd-934c-ac8fe9b7abc2",
+                      "parentUUID": "5504f273-676d-4e34-a42f-ae6f123e46cd",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "e5367cc9-062b-4451-8e9d-4994685cd1c2",
+                    "be440a71-4daf-4ddd-934c-ac8fe9b7abc2"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 0,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 4000
+                },
+                {
+                  "uuid": "a6a14731-c7dc-46b6-b761-69661aebafb1",
+                  "title": "NEGATIVE - unhappy path with invalid credentials (without name)",
+                  "fullFile": "/media/970-rest/_projects_/clientB-v3/specs/client/1_client.create.spec.js",
+                  "file": "/specs/client/1_client.create.spec.js",
+                  "beforeHooks": [
+                    {
+                      "title": "\"before all\" hook in \"NEGATIVE - unhappy path with invalid credentials (without name)\"",
+                      "fullTitle": "CREATE a new CLIENT SMOKE TESTS NEGATIVE - unhappy path with invalid credentials (without name) \"before all\" hook in \"NEGATIVE - unhappy path with invalid credentials (without name)\"",
+                      "timedOut": false,
+                      "duration": 251,
+                      "state": null,
+                      "speed": null,
+                      "pass": false,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "var self = this,\n    args = arguments;\nreturn new Promise(function (resolve, reject) {\n  var gen = fn.apply(self, args);\n  function _next(value) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"next\", value);\n  }\n  function _throw(err) {\n    asyncGeneratorStep(gen, resolve, reject, _next, _throw, \"throw\", err);\n  }\n  _next(undefined);\n});",
+                      "err": {},
+                      "uuid": "0af33dd4-3f7b-47b3-860c-05fb1757b0bf",
+                      "parentUUID": "a6a14731-c7dc-46b6-b761-69661aebafb1",
+                      "isHook": true,
+                      "skipped": false
+                    }
+                  ],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "Checking that response.statusCode is \"400\"",
+                      "fullTitle": "CREATE a new CLIENT SMOKE TESTS NEGATIVE - unhappy path with invalid credentials (without name) Checking that response.statusCode is \"400\"",
+                      "timedOut": false,
+                      "duration": 1,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "(0, _chai.expect)(clientHelper.response.statusCode).to.be.eq(localHelper.testPath.client.create.withoutName.statusCode);",
+                      "err": {},
+                      "uuid": "a62c7518-62ac-41c6-8c81-7927c9b2f910",
+                      "parentUUID": "a6a14731-c7dc-46b6-b761-69661aebafb1",
+                      "isHook": false,
+                      "skipped": false
+                    },
+                    {
+                      "title": "Checking that response.body.message is \"Client create error\"",
+                      "fullTitle": "CREATE a new CLIENT SMOKE TESTS NEGATIVE - unhappy path with invalid credentials (without name) Checking that response.body.message is \"Client create error\"",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "(0, _chai.expect)(clientHelper.response.body.message).to.be.eq(localHelper.testPath.client.create.withoutName.bodyMessage);",
+                      "err": {},
+                      "uuid": "752534dd-5ac6-438e-b857-a764e009a215",
+                      "parentUUID": "a6a14731-c7dc-46b6-b761-69661aebafb1",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "a62c7518-62ac-41c6-8c81-7927c9b2f910",
+                    "752534dd-5ac6-438e-b857-a764e009a215"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 1,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 4000
+                },
+                {
+                  "uuid": "b8ca6ebb-d6e6-4db9-9a8b-ffd6411e6a17",
+                  "title": "Test Suite for all the detail Test Cases",
+                  "fullFile": "/media/970-rest/_projects_/clientB-v3/specs/client/1_client.create.spec.js",
+                  "file": "/specs/client/1_client.create.spec.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "Checking that response.body has PAYLOAD key",
+                      "fullTitle": "CREATE a new CLIENT SMOKE TESTS Test Suite for all the detail Test Cases Checking that response.body has PAYLOAD key",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "(0, _chai.expect)(clientHelper.response.body.payload).not.to.be.undefined;",
+                      "err": {},
+                      "uuid": "0fe5ee77-4f60-44b9-9a33-a775769b4c0e",
+                      "parentUUID": "b8ca6ebb-d6e6-4db9-9a8b-ffd6411e6a17",
+                      "isHook": false,
+                      "skipped": false
+                    },
+                    {
+                      "title": "Checking that response.body.payload is a STRING",
+                      "fullTitle": "CREATE a new CLIENT SMOKE TESTS Test Suite for all the detail Test Cases Checking that response.body.payload is a STRING",
+                      "timedOut": false,
+                      "duration": 1,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "(0, _chai.expect)(clientHelper.response.body.payload).to.be.a('string');",
+                      "err": {},
+                      "uuid": "f6cf348a-ca4d-46f4-ab8e-c02c3f94dddd",
+                      "parentUUID": "b8ca6ebb-d6e6-4db9-9a8b-ffd6411e6a17",
+                      "isHook": false,
+                      "skipped": false
+                    },
+                    {
+                      "title": "Checking that response.body.payload has length 24 symbols",
+                      "fullTitle": "CREATE a new CLIENT SMOKE TESTS Test Suite for all the detail Test Cases Checking that response.body.payload has length 24 symbols",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "(0, _chai.expect)(clientHelper.response.body.payload.length).to.eq(24);",
+                      "err": {},
+                      "uuid": "9968eae5-9f78-4109-9717-dd1967de1ec1",
+                      "parentUUID": "b8ca6ebb-d6e6-4db9-9a8b-ffd6411e6a17",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "0fe5ee77-4f60-44b9-9a33-a775769b4c0e",
+                    "f6cf348a-ca4d-46f4-ab8e-c02c3f94dddd",
+                    "9968eae5-9f78-4109-9717-dd1967de1ec1"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 1,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 4000
+                }
+              ],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 4000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 4000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 4000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "9.2.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.2"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.1.1"
+    }
+  }
+}

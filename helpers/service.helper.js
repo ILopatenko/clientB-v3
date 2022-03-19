@@ -1,35 +1,35 @@
 //IMPORT SECTION
-//  Import supertest - HTTP Client that allows us to create and send a request from a test framework to server
+//  Import supertest - HTTP service that allows us to create and send a request from a test framework to server
 import supertest from 'supertest';
 //  Import dotenv package - to work with environmental project's variables
 import 'dotenv/config';
 //Create a new Class for usersHelper - will store response from a server in response property (variable) all the methods (functions) that related to auth
-class ClientHelper {
+class ServiceHelper {
   constructor() {
     this.response = null;
   }
   //Register a NEW USER
-  async createNew(clientObject) {
+  async createNew(serviceObject) {
     //Create, setup, send request to server, wait for the response (async/await) and save the respponse from server to response property (variable)
     await supertest(process.env.BASE_URL)
       //Setup a request method - POST and an endpoint - /auth
-      .post('/client')
+      .post('/service')
       //Add token to your request (for each protected route)
       .set('Authorization', `${process.env.TOKEN}`)
       //Setup payload - object with 2 keys - login and password (and their values)
-      .send(clientObject)
+      .send(serviceObject)
       //Save a response from server to esponse property (variable)
       .then((res) => {
         this.response = res;
       });
   }
   //
-  //GET CLIENT PROFILE BY ID
+  //GET CERVICE PROFILE BY ID
   async getByID(id) {
     //Create, setup, send request to server, wait for the response (async/await) and save the respponse from server to response property (variable)
     await supertest(process.env.BASE_URL)
       //Setup a request method - POST and an endpoint - /auth
-      .get(`/client/${id}`)
+      .get(`/service/${id}`)
       //Add token to your request (for each protected route)
       .set('Authorization', `${process.env.TOKEN}`)
       //Save a response from server to esponse property (variable)
@@ -38,12 +38,12 @@ class ClientHelper {
       });
   }
 
-  //EDIT CLIENT PROFILE BY ID
+  //EDIT service PROFILE BY ID
   async editByID(id, objectWithNewValues) {
     //Create, setup, send request to server, wait for the response (async/await) and save the respponse from server to response property (variable)
     await supertest(process.env.BASE_URL)
       //Setup a request method - POST and an endpoint - /auth
-      .patch(`/client/${id}`)
+      .patch(`/service/${id}`)
       //Add token to your request (for each protected route)
       .set('Authorization', `${process.env.TOKEN}`)
       //Save a response from server to esponse property (variable)
@@ -54,12 +54,12 @@ class ClientHelper {
       });
   }
 
-  //DELETE CLIENT PROFILE BY ID
+  //DELETE service PROFILE BY ID
   async deleteByID(id) {
     //Create, setup, send request to server, wait for the response (async/await) and save the respponse from server to response property (variable)
     await supertest(process.env.BASE_URL)
       //Setup a request method - POST and an endpoint - /auth
-      .delete(`/client/${id}`)
+      .delete(`/service/${id}`)
       //Add token to your request (for each protected route)
       .set('Authorization', `${process.env.TOKEN}`)
       //Save a response from server to response property (variable)
@@ -68,12 +68,12 @@ class ClientHelper {
       });
   }
 
-  //GET ALL (first 100) CLIENTS PROFILE
+  //GET ALL (first 100) serviceS PROFILE
   async getAll(limit, page) {
     //Create, setup, send request to server, wait for the response (async/await) and save the respponse from server to response property (variable)
     await supertest(process.env.BASE_URL)
       //Setup a request method - POST and an endpoint - /auth
-      .post(`/client/search`)
+      .post(`/service/search`)
       //Add token to your request (for each protected route)
       .set('Authorization', `${process.env.TOKEN}`)
       //Setup payload - object with 2 keys
@@ -84,12 +84,12 @@ class ClientHelper {
       });
   }
 
-  //FIND CLIENT BY NAME
+  //FIND service BY NAME
   async findByName(name) {
     //Create, setup, send request to server, wait for the response (async/await) and save the respponse from server to response property (variable)
     await supertest(process.env.BASE_URL)
       //Setup a request method - POST and an endpoint - /auth
-      .post(`/client/search`)
+      .post(`/service/search`)
       //Add token to your request (for each protected route)
       .set('Authorization', `${process.env.TOKEN}`)
       //Setup payload - object with 2 keys
@@ -101,4 +101,4 @@ class ClientHelper {
   }
 }
 //Export the Class
-export default ClientHelper;
+export default ServiceHelper;
